@@ -5,6 +5,7 @@ set(VERSION_MINOR 0)
 set(VERSION_EXTRA "DEVELOPMENT")
 
 option(BuildShared "BuildShared" ON)
+option(BuildAsCApi "BuildAsCApi" OFF)
 option(BuildExamples "BuildExamples" OFF)
 option(BuildLockFree "BuildLockFree" OFF)
 option(IncludeFunctionSignature "IncludeFunctionSignature" OFF)
@@ -16,13 +17,13 @@ else(BuildShared)
   set(StaticOrShared "STATIC")
 endif(BuildShared)
 
+if(BuildAsCApi)
+  add_definitions(-DHUMBLELOGGING_EXPORT_C)
+endif(BuildAsCApi)
+
 if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "-std=c++11")
 endif(CMAKE_COMPILER_IS_GNUCXX)
-
-#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-#set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-#set(ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 # Sources
 set(headers
@@ -36,6 +37,7 @@ set(headers
   include/humblelogging/util/processinfo.h
   include/humblelogging/util/ternarytree.h
   include/humblelogging/api.h
+  include/humblelogging/capi.h
   include/humblelogging/appender.h
   include/humblelogging/configuration.h
   include/humblelogging/defines.h
@@ -53,6 +55,7 @@ set(sources
   src/appender/rollingfileappender.cpp
   src/util/patternconfigregistry.cpp
   src/util/processinfo.cpp
+  src/capi.cpp
   src/appender.cpp
   src/configuration.cpp
   src/factory.cpp

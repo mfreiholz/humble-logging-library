@@ -12,6 +12,15 @@
   #define HUMBLE_EXPORT_API
 #endif
 
+// DLL Import/Export C macro
+#ifdef _WIN32
+  #ifdef X
+    #define HL_EXPORT_C_API __declspec(dllexport)
+  #else
+    #define HL_EXPORT_C_API __declspec(dllexport)
+  #endif
+#endif
+
 // Namespace defines
 #define HL_NAMESPACE_BEGIN \
   namespace humble { \
