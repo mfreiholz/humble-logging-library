@@ -6,6 +6,7 @@ set(VERSION_EXTRA "DEVELOPMENT")
 
 option(BuildShared "BuildShared" ON)
 option(BuildExamples "BuildExamples" OFF)
+option(BuildTests "BuildTests" OFF)
 option(BuildLockFree "BuildLockFree" OFF)
 option(BuildSystemNative "BuildSystemNative" OFF)
 option(IncludeFunctionSignature "IncludeFunctionSignature" OFF)
@@ -137,3 +138,8 @@ if(BuildExamples)
     add_subdirectory(examples/threaded)
   endif(WIN32)
 endif(BuildExamples)
+
+# Tests
+if (BuildTests)
+  add_subdirectory(test)
+endif(BuildTests)
