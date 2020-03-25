@@ -21,7 +21,7 @@ public:
 	const std::string& getFunction() const { return _function; }
 	const time_t& getTime() const { return _time; }
 	unsigned int getPid() const { return _pid; }
-	unsigned int getTid() const { return _tid; }
+	size_t getTid() const { return _tid; }
 
 private:
 	std::string _loggerName;
@@ -32,7 +32,7 @@ private:
 	std::string _function;
 	time_t _time;
 	unsigned int _pid;
-	unsigned int _tid;
+	size_t _tid;
 };
 
 HL_NAMESPACE_END
